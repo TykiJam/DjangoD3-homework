@@ -1,0 +1,40 @@
+{% extends 'flatpages/default.html' %} 
+{% load custom_filters %}
+
+{% block title %}
+Статья - {{post.post_title}}
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Текущая публикация - {{post.post_title|Censor}} </h1>
+    <hr>
+    {% if post %}
+        <table>
+            <tr>
+                <td>
+                    Заголовок
+                </td>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Полный текст
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ post.post_title|Censor }}
+                </td>
+                <td>
+                    {{ post.adding_time|date:'d. m. Yг. H:m' }}
+                </td>
+                <td>
+                    {{ post.post_text|Censor}}
+                </td>
+            </tr>
+        </table>
+    {% else %}
+        <h2>Новости будут добавлены позднее!</h2>
+    {% endif %}
+{% endblock content %}
